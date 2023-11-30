@@ -32,7 +32,9 @@
         <div class="row row-cols-2">
           <div class="col-6"><h1>Photography</h1></div>
           <div class="col"> 
-            <button id="addButton" type="button" class="btn btn-primary">Add</button>
+            <form id="addButtonForm" action="/blog-form" method="GET"></form>
+            <button id="addButton" type="button" class="btn btn-primary">Add</button aria-current="page">
+          </form>
          </div>
       </div>
 
@@ -53,7 +55,17 @@
         </tbody>
       </table>
     </div>
-    <% } %>
+    <script>
+      const addButton = document.getElementById('addButton');
+    
+      addButton.addEventListener('click', () => {
+        const addButtonForm = document.getElementById('addButtonForm');
+        addButtonForm.submit();
+      });
+    </script>
+    <% } else if(locals.blogForm) { %>
+      <%- blogForm %>
+      <% } %>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

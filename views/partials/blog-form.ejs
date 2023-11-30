@@ -1,0 +1,56 @@
+<div class="container p-5 my-5 border">
+    <div class="container">
+      <div class="row row-cols-4">
+        <div class="col-9"><h1>New Blog</h1></div>
+        <div class="col">
+          <button id="top-submit" type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <form action="/submit-photography" method="POST">
+        <div class="row g-3 align-items-center">
+          <div class="col-auto">
+            <input
+              type="text"
+              id="blogTitle"
+              class="form-control"
+              aria-describedby="blogTitleBox"
+              placeholder="Title"
+            />
+          </div>
+          <div class="col-auto">
+            <label for="blogTitle" class="col-form-label">Blog Title</label>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="authorEmail" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="authorEmail"
+            aria-describedby="emailHelp"
+            placeholder="name@example.com"
+          />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="authorName" class="form-label">Author </label>
+          <input type="text" class="form-control" id="authorName" />
+        </div>
+
+        <div class="mb-3">
+          <label for="blogText" class="form-label">Text</label>
+          <textarea class="form-control" id="blogText" rows="24"></textarea>
+        </div>
+        <button id="bottom-submit" type="submit" class="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>

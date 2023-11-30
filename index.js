@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(getBodyFields);
 
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("partials/index.ejs");
   // res.sendFile(__dirname + "/public/index.html");
   // res.sendStatus(201);
   // console.log("Manage get / request");
@@ -56,7 +56,7 @@ app.get("/photography", (req, res) => {
   // console.log('manage /photo');
   const fileList = getFiles(__dirname + "/views/blogs/photography");
   const tableBody = makeTableBody(fileList);
-  res.render("partials/table-photography.ejs", { tableBody: tableBody });
+  res.render("partials/index.ejs", { tableBody: tableBody, themeImage: "https://picsum.photos/id/91/800/200?random=1" });
 });
 
 app.get("/blog-form", (req, res) => {

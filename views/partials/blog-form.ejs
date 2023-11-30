@@ -16,15 +16,18 @@
   </div>
 
   <div class="container">
-    <form action="/submit-photography" method="POST">
+    <form action="/new-blog" method="POST">
       <div class="row g-3 align-items-center">
         <div class="col-auto">
+          <input type="hidden" name="postId" value="Photography">
+
           <input
             type="text"
             id="blogTitle"
             class="form-control"
             aria-describedby="blogTitleBox"
             placeholder="Title"
+            name="blogTitle"
           />
         </div>
         <div class="col-auto">
@@ -39,6 +42,7 @@
           type="email"
           class="form-control"
           id="authorEmail"
+           name="authorEmail"
           aria-describedby="emailHelp"
           placeholder="name@example.com"
         />
@@ -48,12 +52,12 @@
       </div>
       <div class="mb-3">
         <label for="authorName" class="form-label">Author </label>
-        <input type="text" class="form-control" id="authorName" />
+        <input name="authorName" type="text" class="form-control" id="authorName" />
       </div>
 
       <div class="mb-3">
         <label for="blogText" class="form-label">Text</label>
-        <textarea class="form-control" id="blogText" rows="16"></textarea>
+        <textarea name="blogText" class="form-control" id="blogText" rows="16"></textarea>
       </div>
       <button id="bottom-submit" type="submit" class="btn btn-primary">
         Submit
@@ -62,11 +66,11 @@
   </div>
 </div>
 
-<script>
+<!-- <script>
   const topBtn = document.getElementById("topSubmitBtn");
 
   topBtn.addEventListener("click", () => {
     const topSubmitBtn = document.getElementById("topSubmitBtn");
     topSubmitBtn.submit();
   });
-</script>
+</script> -->

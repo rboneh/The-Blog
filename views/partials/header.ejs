@@ -3,6 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- <meta
+      http-equiv="Content-Security-Policy"
+      content="
+  default-src 'self';
+  style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
+  font-src 'self' https://fonts.gstatic.com;
+  script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline';
+  img-src 'self' https://picsum.photos data:;
+"
+    /> -->
+
     <title>The Blog</title>
 
     <link rel="stylesheet" href="styles/main.css" />
@@ -29,8 +41,17 @@
       data-bs-theme="dark"
     >
       <div class="container-fluid">
-        <form id="brandForm" action="/" method="GET" class="navbar-brand bg-dark" >
-          <button class="navbar-brand bg-dark" type="submit" aria-current="page">
+        <form
+          id="brandForm"
+          action="/"
+          method="GET"
+          class="navbar-brand bg-dark"
+        >
+          <button
+            class="navbar-brand bg-dark"
+            type="submit"
+            aria-current="page"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -71,27 +92,7 @@
               </form>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="./table-food.html"
-                >Food</a
-              >
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Misc</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Money</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="./table-music.html"
-                >Music</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">News</a>
+              <a class="nav-link disabled" href="#">About</a>
             </li>
             <li class="nav-item">
               <form id="photographyForm" action="/photography" method="GET">
@@ -101,12 +102,42 @@
               </form>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Sport</a>
+              <a
+                class="nav-link disabled"
+                aria-current="page"
+                href="./table-food.html"
+                >Food</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-current="page" href="#">Misc</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Tech</a>
+              <a class="nav-link disabled" aria-current="page" href="#"
+                >Money</a
+              >
             </li>
             <li class="nav-item">
+              <a
+                class="nav-link disabled"
+                aria-current="page"
+                href="./table-music.html"
+                >Music</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-current="page" href="#">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-current="page" href="#"
+                >Sport</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-current="page" href="#">Tech</a>
+            </li>
+            <li class="nav-item disabled">
               <a class="nav-link" aria-current="page" href="#">Travel</a>
             </li>
 

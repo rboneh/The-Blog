@@ -67,6 +67,15 @@ app.get("/blog-form", (req, res) => {
   res.render("partials/index.ejs", { blogForm: blogForm, themeImage: "https://picsum.photos/id/180/800/100?random=1"});
 });
 
+app.post("/new-blog", (res, req) => {
+  // Process form data here
+  const formData = req.body;
+  // Implement your logic to handle the form data
+
+  // Send a response
+  res.send('Form submitted successfully');
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

@@ -18,17 +18,19 @@ var messageBody = {};
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// function getBodyFields(req, res, next) {
-//   const title = req.body.blogTitle;
-//   const email = req.body.authorEmail;
-//   const name = req.body.authorName;
-//   const text = req.body.blogText;
-//   messageBody = req.body;
-//   console.log("Email is: " + email);
-//   next();
-// }
 
-// app.use(getBodyFields);
+function getBodyFields(req, res, next) {
+  // const title = req.body.blogTitle;
+  // const email = req.body.authorEmail;
+  // const name = req.body.authorName;
+  // const text = req.body.blogText;
+  const messageBody = req.body;
+  // console.log("Email is: " + email);
+  // console.log(text);
+  next();
+}
+
+app.use(getBodyFields);
 
 app.get("/", (req, res) => {
   res.render("partials/index.ejs");
@@ -67,13 +69,13 @@ app.get("/blog-form", (req, res) => {
   res.render("partials/index.ejs", { blogForm: blogForm, themeImage: "https://picsum.photos/id/180/800/100?random=1"});
 });
 
-app.post("/new-blog", (res, req) => {
-  // Process form data here
-  const formData = req.body;
-  // Implement your logic to handle the form data
 
-  // Send a response
-  res.send('Form submitted successfully');
+app.post('/new-blog', (req, res) => {
+  // Your code here
+  const formData = req.body;
+  console.log(formData);
+  // Example response
+  res.send('Blog post submitted successfully');
 });
 
 app.listen(port, () => {

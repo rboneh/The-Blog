@@ -16,7 +16,7 @@
   </div>
 
   <div class="container">
-    <form action="/new-blog" method="POST">
+    <form  id="blogForm" action="/new-blog" method="POST" onsubmit="prepareFormData()">
       <div class="row g-3 align-items-center">
         <div class="col-auto">
           <input type="hidden" name="postId" value="Photography">
@@ -66,11 +66,16 @@
   </div>
 </div>
 
-<!-- <script>
-  const topBtn = document.getElementById("topSubmitBtn");
 
-  topBtn.addEventListener("click", () => {
-    const topSubmitBtn = document.getElementById("topSubmitBtn");
-    topSubmitBtn.submit();
-  });
-</script> -->
+<script>
+  function prepareFormData() {
+    // Get the value of the textarea
+    const blogText = document.getElementById('blogText').value;
+
+    // Replace newline characters with <br> tags
+    const formattedBlogText = blogText.replace(/\n/g, '<br>');
+
+    // Update the textarea value
+    document.getElementById('blogText').value = formattedBlogText;
+  }
+</script>

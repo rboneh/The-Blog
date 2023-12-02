@@ -6,9 +6,10 @@ import bodyParser from "body-parser";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import * as u from './public/utilities.js';
+import * as u from "./public/utilities.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const dirName = dirname(fileURLToPath(import.meta.url));;
 // console.log(__dirname + "/public/index.html");
 
 const app = express();
@@ -17,7 +18,6 @@ var messageBody = {};
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 function getBodyFields(req, res, next) {
   // const title = req.body.blogTitle;
@@ -60,25 +60,39 @@ app.get("/photography", (req, res) => {
   // console.log('manage /photo');
   const fileList = u.getFiles(__dirname + "/views/blogs/photography");
   const tableBody = u.makeTableBody(fileList);
-  res.render("partials/index.ejs", { tableBody: tableBody, themeImage: "https://picsum.photos/id/91/800/200?random=1" });
+  res.render("partials/index.ejs", {
+    tableBody: tableBody,
+    themeImage: "https://picsum.photos/id/91/800/200?random=1",
+  });
 });
 
 app.get("/blog-form", (req, res) => {
   const filePath = __dirname + "/views/partials/blog-form.ejs";
   const blogForm = u.readFileSynchronously(filePath);
-  res.render("partials/index.ejs", { blogForm: blogForm, themeImage: "https://picsum.photos/id/180/800/100?random=1"});
+  res.render("partials/index.ejs", {
+    blogForm: blogForm,
+    themeImage: "https://picsum.photos/id/180/800/100?random=1",
+  });
 });
 
-
-app.post('/new-blog', (req, res) => {
+app.post("/new-blog", (req, res) => {
   // Your code here
   const formData = req.body;
-  console.log(formData);
-  // Example response
-  res.send('Blog post submitted successfully');
+  // console.log(formData);
+
+  // writing new blog to db  
+  u.createBlogFile(formData, dirName);
+
+  //sending client update blogs table
+  const fileList = u.getFiles(__dirname + "/views/blogs/photography");
+  const tableBody = u.makeTableBody(fileList);
+  res.render("partials/index.ejs", {
+    tableBody: tableBody,
+    themeImage: "https://picsum.photos/id/91/800/200?random=1",
+  });
+
 });
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
-

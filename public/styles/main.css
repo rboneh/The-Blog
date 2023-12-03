@@ -6,6 +6,11 @@
   display: inline-block;
 }
 
-#brandForm > button {
+/* #brandForm > button {
   border: none !important;
+} */
+
+footer {
+  text-align: center;
+  padding: 10px;
 }

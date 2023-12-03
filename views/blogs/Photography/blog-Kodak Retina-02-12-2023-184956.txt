@@ -1,5 +1,5 @@
-Nikon FM2
-02/12/2023, 10:22:24
+Kodak Retina
+02/12/2023, 18:49:56
 Nakamuro Satushi
 Blog begin here
 <h1>Current Date and Time: <%= new Date() %></h1>

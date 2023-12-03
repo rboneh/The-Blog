@@ -9,7 +9,7 @@ import { fileURLToPath } from "url";
 import * as u from "./public/utilities.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const dirName = dirname(fileURLToPath(import.meta.url));;
+const dirName = dirname(fileURLToPath(import.meta.url));
 // console.log(__dirname + "/public/index.html");
 
 const app = express();
@@ -59,7 +59,7 @@ app.get("/contact", (req, res) => {
 app.get("/photography", (req, res) => {
   // console.log('manage /photo');
   const fileList = u.getFiles(__dirname + "/views/blogs/photography");
-  const tableBody = u.makeTableBody(fileList);
+  const tableBody = u.makeTableBody(fileList, "Photography");
   res.render("partials/index.ejs", {
     tableBody: tableBody,
     themeImage: "https://picsum.photos/id/91/800/200?random=1",
@@ -75,22 +75,55 @@ app.get("/blog-form", (req, res) => {
   });
 });
 
+app.post("/get-blog", (req, res) => {
+  const reqBody = req.body;
+  // console.log("get-blog:");
+  // console.log(reqBody);
+
+  const fDate = u.date4fileName(reqBody.fileDate);
+  const fileName = `/views/blogs/${reqBody.blogsId}/${reqBody.fileName}-${fDate}.txt`;
+  const filePath = __dirname + fileName;
+  const blog = u.readFileSynchronously(filePath);
+  const fBlog = u.formatBlog(blog);
+
+  // console.log(fBlog);
+  res.render("partials/index.ejs", {
+    blogForm: fBlog,
+    themeImage: "https://picsum.photos/id/180/800/100?random=1",
+  });
+  // res.sendStatus(201);
+});
+
 app.post("/new-blog", (req, res) => {
   // Your code here
   const formData = req.body;
   // console.log(formData);
 
-  // writing new blog to db  
-  u.createBlogFile(formData, dirName);
+  // writing new blog to db
+  const blogObj = u.createBlogFile(formData, dirName);
 
-  //sending client update blogs table
-  const fileList = u.getFiles(__dirname + "/views/blogs/photography");
-  const tableBody = u.makeTableBody(fileList);
-  res.render("partials/index.ejs", {
-    tableBody: tableBody,
-    themeImage: "https://picsum.photos/id/91/800/200?random=1",
+  fs.writeFile(blogObj.filePath, blogObj.nBlog, function (err) {
+    if (err) throw err;
+    console.log("Saved!");
+
+    // Read the files or render the updated page after the writing process is complete
+    const fileList = u.getFiles(__dirname + "/views/blogs/photography");
+    //console.log(fileList);
+    const tableBody = u.makeTableBody(fileList, formData.postId);
+    res.render("partials/index.ejs", {
+      tableBody: tableBody,
+      themeImage: "https://picsum.photos/id/91/800/200?random=1",
+    });
   });
 
+  //sending client update blogs table
+  // const fileList = u.getFiles(__dirname + "/views/blogs/photography");
+  // console.log(fileList);
+  // const tableBody = u.makeTableBody(fileList, formData.postId);
+  // res.render("partials/index.ejs", {
+  //   tableBody: tableBody,
+  //   themeImage: "https://picsum.photos/id/91/800/200?random=1",
+  // });
 });
 
 app.listen(port, () => {
